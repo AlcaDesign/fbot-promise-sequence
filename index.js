@@ -1,11 +1,17 @@
-const TWITCH_CHANNEL = 'alca';
-
 // Load packages from npm.
 const tmi = require('tmi.js');
 const five = require('./lib/johnny-five'); // Simulated
 
 // Load local package.
 const utils = require('./lib/utils');
+
+const TWITCH_CHANNEL = process.argv.slice(2).shift();
+
+if(!TWITCH_CHANNEL) {
+	utils.log.redBright('Usage:');
+	utils.log.whiteBright('node index.js <channel name>');
+	process.exit();
+}
 
 // Load the Follow Bot code.
 const fbot = require('./lib/fbot');
